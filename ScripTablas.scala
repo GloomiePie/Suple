@@ -126,18 +126,18 @@ object ScripTablas extends App{
 */
 
   //TABLA companie------------------------------------------------------------------------
-/*
 
+/*
   case class Companie(
-                     name : String,
-                     OriginalId : Int
+                     OriginalId : Int,
+                     name : String
                      )
 
   val patronCompanie =
     """
-      |INSERT INTO Companie (name, OriginalId)
+      |INSERT INTO Companie (OriginalId,`Name`)
       |VALUES
-      |(`%s`, `%d`);
+      |(%d, "%s");
       |""".stripMargin
 
   val companie = data
@@ -148,14 +148,14 @@ object ScripTablas extends App{
     .flatMap(x => x._1.zip(x._2))
     .map(x => (x._1.as[Int], x._2.as[String]))
     .map(elem => Companie(
-      elem._2,
-      elem._1
+      elem._1,
+      escapeMysql(elem._2)
     ))
 
   val companie2 = companie
     .map(elem => patronCompanie.formatLocal(java.util.Locale.US,
-      elem.name,
-      elem.OriginalId
+      elem.OriginalId,
+      elem.name
     ))
 
   val ScriptFile3 = new File("C:\\Users\\USUARIO\\Desktop\\companie_insert.sql")
@@ -163,6 +163,7 @@ object ScripTablas extends App{
 
   companie2.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\companie_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND))
+
 */
 
   //TABLA production_companie------------------------------------------------------------------------
