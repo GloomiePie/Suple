@@ -2,9 +2,6 @@ import java.io.File
 import com.github.tototoshi.csv.CSVReader
 import scalikejdbc._
 
-import play.api.libs.json._
-import requests.Response
-
 
 object SentenciasInsertInto extends App {
   val reader = CSVReader.open(new File("C:\\Users\\USUARIO\\Downloads\\movie_dataset.csv"))

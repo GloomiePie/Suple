@@ -6,8 +6,6 @@ import java.nio.file.{Files, Paths, StandardOpenOption}
 
 import play.api.libs.json._
 
-import scalikejdbc._
-
 object ScripTablas extends App{
   val reader = CSVReader.open(new File("C:\\Users\\USUARIO\\Downloads\\movie_dataset.csv"))
   val data = reader.allWithHeaders()
@@ -25,7 +23,7 @@ object ScripTablas extends App{
     .replaceAll("\"", "\\\\\"")
 
   //TABLA person------------------------------------------------------------------------
-/*
+
 
   case class TablaPerson(
                         Name: String
@@ -66,11 +64,11 @@ object ScripTablas extends App{
 
   personCast.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\person_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND))
-*/
+
 
 
   //TABLA cast
-/*
+
   case class Cast(
                  personId : Int,
                  idMovie : Int,
@@ -123,11 +121,11 @@ object ScripTablas extends App{
 
   cast2.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\cast_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND))
-*/
+
 
   //TABLA companie------------------------------------------------------------------------
 
-/*
+
   case class Companie(
                      OriginalId : Int,
                      name : String
@@ -164,10 +162,10 @@ object ScripTablas extends App{
   companie2.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\companie_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND))
 
-*/
+
 
   //TABLA production_companie------------------------------------------------------------------------
-/*
+
   case class ProductionCompanies(
                                 idMovie : Int,
                                 idCompanie : Int
@@ -205,10 +203,10 @@ object ScripTablas extends App{
 
   production_companies2.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\production_companie_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND))
-*/
+
 
   //TABLA Language------------------------------------------------------------------------
-/*
+
   case class Language(
                      iso_639_1 : String,
                      name : String
@@ -243,11 +241,11 @@ object ScripTablas extends App{
 
   languages2.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\languages_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND))
-*/
+
 
   //TABLE spoken_language------------------------------------------------------------------------
 
-  /*case class Spoken_languages(
+  case class Spoken_languages(
                              idMovie : Int,
                              LanguageId : Int
                              )
@@ -283,5 +281,5 @@ object ScripTablas extends App{
 
   spoken_language2.foreach(insert =>
     Files.write(Paths.get("C:\\Users\\USUARIO\\Desktop\\spoken_language_insert.sql"), insert.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND))
-*/
+
 }
